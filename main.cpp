@@ -62,6 +62,7 @@ private:
     };
     int x = 0;  // x 좌표 멤버 변수
     int y = 0;  // y 좌표 멤버 변수
+    int rotation = 0; // 초기 회전 횟수 설정
 
 public:
     // x 좌표 설정 함수
@@ -84,6 +85,11 @@ public:
         return y;
     }
 
+    // 회전 횟수 가져오기 함수
+    int getR() {
+        return rotation;
+    }
+
     // 배열 회전 메소드 추가
     void rotate() {
         int temp[4][4]; // 임시 배열을 사용하여 회전
@@ -100,6 +106,9 @@ public:
                 blocks[y][i][j] = temp[3 - j][i];
             }
         }
+
+        // 회전 횟수 증가 (최대 3까지)
+        rotation = (rotation + 1) % 4;
     }
 };
 
@@ -156,8 +165,10 @@ int main() {
 
         int getX = block.getX();
         int getY = block.getY();
+        int getR = block.getR();
         cout << "X값 : " << getX << endl;
         cout << "Y값 : " << getY << endl;
+        cout << "회전값 : " << getR << endl;
 
         //         Logic
 
